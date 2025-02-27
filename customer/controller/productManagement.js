@@ -1,18 +1,23 @@
-import { getDataProduct } from "../services/fetchProductApi.js";
+import { Product } from "../model/Product.js";
+import { productService } from "../services/api.js";
 
-let products = [];
 let cart = [];
 
 const init = async () => {
   try {
-    products = await getDataProduct();
-    renderProduct(products);
+    productService.clearCache();
+    await productService.getAllProducts();
+    renderProduct(productService.getCachedProducts());
   } catch (error) {
     console.error("Lỗi khi khởi tạo:", error);
   }
 };
 
 init();
+
+setInterval(async () => {
+  init();
+}, 3000);
 
 const renderProduct = (products) => {
   let htmlContent = "";
@@ -119,18 +124,19 @@ document.getElementById("sortDropdownButton1").onclick = () => {
   dropdownItems.forEach((item) => {
     item.onclick = (e) => {
       e.preventDefault();
+
       const selectedValue = item.textContent.trim();
-      const filteredProducts = products.filter(
-        (product) => product.type.toLowerCase() === selectedValue.toLowerCase()
-      );
+      const products = productService.getCachedProducts();
+      const filteredProducts = Product.filterProduct(products, selectedValue);
+
       renderProduct(filteredProducts.length > 0 ? filteredProducts : products);
     };
   });
 };
 
 window.handleProductCart = (id) => {
-  const productCart = products.find((product) => product.id === id);
+  const productCart = new Product();
+  const findedProduct = products.find((product) => product.id === id);
+  Object.assign(productCart, findedProduct);
   cart.push(productCart);
-  
-  
 };
