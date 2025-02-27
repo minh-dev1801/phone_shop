@@ -1,8 +1,11 @@
 import { getDataProduct } from "../services/fetchProductApi.js";
 
+let products = [];
+let cart = [];
+
 const init = async () => {
   try {
-    const products = await getDataProduct();
+    products = await getDataProduct();
     renderProduct(products);
   } catch (error) {
     console.error("Lỗi khi khởi tạo:", error);
@@ -105,4 +108,21 @@ const renderProduct = (products) => {
   });
 
   document.getElementById("productContent").innerHTML = htmlContent;
+};
+
+//Xử lý filter type product
+document.getElementById("sortDropdownButton1").onclick = () => {
+  const dropdown = document.getElementById("dropdownSort1");
+  const dropdownItems = document.querySelectorAll("#dropdownSort1 a");
+
+  dropdownItems.forEach((item) => {
+    item.onclick = (e) => {
+      e.preventDefault();
+      const selectedValue = item.textContent.trim();
+      const filteredProducts = products.filter(
+        (product) => product.type.toLowerCase() === selectedValue.toLowerCase()
+      );
+      renderProduct(filteredProducts.length > 0 ? filteredProducts : products);
+    };
+  });
 };
