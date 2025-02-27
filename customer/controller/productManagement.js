@@ -99,7 +99,9 @@ const renderProduct = (products) => {
                     <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">$${
                       product.price
                     }</p>
-                    <button type="button" class="inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                    <button type="button" class="addProductCart inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={handleProductCart("${
+                      product.id
+                    }")}>
                         <i class="fa-solid fa-cart-plus -ms-2 me-2"></i>
                         Add to cart
                     </button>
@@ -112,7 +114,6 @@ const renderProduct = (products) => {
 
 //Xử lý filter type product
 document.getElementById("sortDropdownButton1").onclick = () => {
-  const dropdown = document.getElementById("dropdownSort1");
   const dropdownItems = document.querySelectorAll("#dropdownSort1 a");
 
   dropdownItems.forEach((item) => {
@@ -125,4 +126,11 @@ document.getElementById("sortDropdownButton1").onclick = () => {
       renderProduct(filteredProducts.length > 0 ? filteredProducts : products);
     };
   });
+};
+
+window.handleProductCart = (id) => {
+  const productCart = products.find((product) => product.id === id);
+  cart.push(productCart);
+  
+  
 };
