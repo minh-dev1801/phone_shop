@@ -17,34 +17,31 @@
   <body>
     <!-- Header -->
     <header>
-      <nav
-        class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800"
-      >
+      <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
         <div
           class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
         >
-          <a href="https://flowbite.com" class="flex items-center">
+          <a href="./index.html" class="flex items-center">
             <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              class="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
+              src="../../asset/img/logo.jpg"
+              class="mr-3 h-6 sm:h-9 rounded-full"
+              alt="Phone shop Logo"
             />
-            <span
-              class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
-              >Flowbite</span
+            <span class="self-center text-xl font-semibold whitespace-nowrap"
+              >Phone shop</span
             >
           </a>
           <div class="flex items-center lg:order-2">
             <a
               id="buttonShowCart"
               href="#"
-              class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none"
               >Cart</a
             >
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
             >
@@ -55,7 +52,11 @@
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <pathbg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12
+                <pathbg-gray-50
+                  py-8
+                  antialiased
+                  dark:bg-gray-900
+                  md:py-12
                   fill-rule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                   clip-rule="evenodd"
@@ -84,7 +85,7 @@
             >
               <li>
                 <a
-                  href="#"
+                  href="./index.html"
                   class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
                   aria-current="page"
                   >Home</a
@@ -92,7 +93,7 @@
               </li>
               <li>
                 <a
-                  href="#"
+                  href="../../admin/view/index.html"
                   class="py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 block"
                   >Admin</a
                 >
@@ -103,7 +104,7 @@
       </nav>
     </header>
     <!-- Hero -->
-    <!-- <section class="bg-white dark:bg-gray-900">
+    <section id="showHero" class="bg-white dark:bg-gray-900">
       <div
         class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
       >
@@ -111,19 +112,20 @@
           <h1
             class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white"
           >
-            Payments tool for software companies
+            Your One-Stop Shop for Mobile Phones
           </h1>
           <p
             class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"
           >
-            From checkout to global sales tax compliance, companies around the
-            world use Flowbite to simplify their payment stack.
+            Discover the latest smartphones and accessories with seamless online
+            shopping, trusted quality, and exceptional customer service—serving
+            customers in Vietnam and beyond.
           </p>
           <a
             href="#"
             class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
           >
-            Get started
+            Shop Now
             <svg
               class="w-5 h-5 ml-2 -mr-1"
               fill="currentColor"
@@ -141,19 +143,22 @@
             href="#"
             class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
           >
-            Speak to Sales
+            Contact Support
           </a>
         </div>
         <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
           <img
             src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
-            alt="mockup"
+            alt="mobile phone mockup"
           />
         </div>
       </div>
-    </section> -->
+    </section>
     <!-- Product cards -->
-    <section id="showProduct" class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
+    <section
+      id="showProduct"
+      class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12"
+    >
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <!-- Heading & Filters -->
         <div
@@ -163,7 +168,7 @@
             <h2
               class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl"
             >
-              Electronics
+              Products
             </h2>
           </div>
 
@@ -255,7 +260,10 @@
       </div>
     </section>
     <!-- Cart -->
-    <section id="showCart" class="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5 hidden">
+    <section
+      id="showCart"
+      class="bg-gray-50 dark:bg-gray-900 py-6 sm:py-12 hidden"
+    >
       <div class="px-4 mx-auto max-w-screen-2xl lg:px-12">
         <div
           class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg"
@@ -268,7 +276,6 @@
                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
               >
                 <tr>
-
                   <th scope="col" class="px-4 py-3">Product</th>
                   <th scope="col" class="px-4 py-3">Price</th>
                   <th scope="col" class="px-4 py-3">Quantity</th>
@@ -280,10 +287,23 @@
             </table>
           </div>
         </div>
+        <div class="flex justify-end mt-4 gap-10 items-center">
+          <h1 class="text-xl font-bold text-yellow-400">
+            Grand Total: <span id="grandTotal" class="text-lg font-medium text-black"></span>
+          </h1>
+
+          <button
+            id="checkout"
+            type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-10 py-2.5 me-2 mb-2"
+          >
+            Checkout
+          </button>
+        </div>
       </div>
     </section>
     <!-- Mega footer -->
-    <!-- <footer class="bg-white antialiased dark:bg-gray-800">
+    <footer class="bg-white antialiased dark:bg-gray-800">
       <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <div
           class="border-b border-gray-100 py-6 dark:border-gray-700 md:py-8 lg:py-16"
@@ -446,306 +466,6 @@
                       title=""
                       class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                       >Product Manuals</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h6
-                  class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-                >
-                  Partnerships
-                </h6>
-                <ul class="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Partner With Us</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Become a Supplier</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Affiliate Program</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Collaboration Opportunities</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Sponsorship Requests</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h6
-                  class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-                >
-                  Payment Options
-                </h6>
-                <ul class="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Credit & Debit Cards</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >PayPal</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Bank Transfers</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Installment Plans</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Gift Cards</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h6
-                  class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-                >
-                  Rewards
-                </h6>
-                <ul class="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Reward Points</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Referral Program</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >VIP Membership</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Exclusive Offers</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Redeem Rewards</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h6
-                  class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-                >
-                  Trade Assurance
-                </h6>
-                <ul class="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >What is Trade Assurance?</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >How It Works</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Buyer Protection</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Seller Guarantee</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >FAQs</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h6
-                  class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-                >
-                  Sell on Flowbite
-                </h6>
-                <ul class="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Seller Registration</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >How to Sell</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Seller Policies</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Seller Resources</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Seller Support</a
-                    >
-                  </li>
-                </ul>
-              </div>
-
-              <div>
-                <h6
-                  class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white"
-                >
-                  Get Support
-                </h6>
-                <ul class="space-y-3">
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Contact Us</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Help Center</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Community Forums</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Technical Support</a
-                    >
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      title=""
-                      class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                      >Live Chat</a
                     >
                   </li>
                 </ul>
@@ -961,19 +681,6 @@
           <div
             class="gap-4 space-y-5 xl:flex xl:items-center xl:justify-between xl:space-y-0"
           >
-            <a href="#" title="" class="block">
-              <img
-                class="block h-8 w-auto dark:hidden"
-                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/logo-full.svg"
-                alt=""
-              />
-              <img
-                class="hidden h-8 w-auto dark:block"
-                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/logo-full-dark.svg"
-                alt=""
-              />
-            </a>
-
             <ul
               class="flex flex-wrap items-center gap-4 text-sm text-gray-900 dark:text-white xl:justify-center"
             >
@@ -999,14 +706,14 @@
               </li>
             </ul>
 
-            <p class="text-sm text-gray-500 dark:text-gray-400">
+            <p class="text-sm text-gray-500">
               © 2024 <a href="#" class="hover:underline">Flowbite</a>, Inc. All
               rights reserved.
             </p>
           </div>
         </div>
       </div>
-    </footer> -->
+    </footer>
     <!-- Axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- Flowbite -->

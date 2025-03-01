@@ -4,6 +4,18 @@ export class Cart {
     this.products = products;
   }
 
+  static instance = null;
+
+  static setInstance(products = []) {
+    if (!Cart.instance) {
+      Cart.instance = new Cart([], products);
+    }
+  }
+
+  static getInstance() {
+    return Cart.instance;
+  }
+
   getProductById(id) {
     return this.products.find((product) => product.id === id);
   }
@@ -50,6 +62,13 @@ export class Cart {
     this.saveToLocalStorage();
   }
 
+  grandTotal() {
+    const grandTotal = this.items.map(
+      (item) => item.quantity * this.getProductById(item.productId).price
+    );
+    return grandTotal.reduce((sum, num) => sum + num, 0);
+  }
+
   showCart() {
     return this.items.length === 0
       ? []
@@ -74,7 +93,7 @@ export class Cart {
     this.items = this.items.filter((item) => item.productId !== id);
     this.saveToLocalStorage();
   }
-  
+
   loadFromLocalStorage() {
     const savedItems = localStorage.getItem("cartItems");
     return savedItems ? JSON.parse(savedItems) : [];
@@ -82,5 +101,10 @@ export class Cart {
 
   saveToLocalStorage() {
     localStorage.setItem("cartItems", JSON.stringify(this.items));
+  }
+
+  clearCart() {
+    this.items = [];
+    this.saveToLocalStorage();
   }
 }
