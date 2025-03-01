@@ -1,11 +1,7 @@
 export class Cart {
-  constructor(items, products) {
-    this.items = items;
+  constructor(items = [], products = []) {
+    this.items = this.loadFromLocalStorage() || items;
     this.products = products;
-  }
-
-  getItems() {
-    return this.items;
   }
 
   getProductById(id) {
@@ -14,6 +10,10 @@ export class Cart {
 
   getItemById(productId) {
     return this.items.find((item) => item.productId === productId);
+  }
+
+  getItems() {
+    return this.items;
   }
 
   addProductToCart(id) {
@@ -27,27 +27,30 @@ export class Cart {
     } else {
       console.error(`Sản phẩm với ID ${id} không tồn tại!`);
     }
+
+    this.saveToLocalStorage();
   }
 
   increaseQuantity(id) {
-    const increaseQuantityItems = this.items.map((item) =>
-      item.productId === id ? { ...item, quantity: (item.quantity += 1) } : item
-    );
-    return (this.items =
-      increaseQuantityItems.length === 0 ? [] : increaseQuantityItems);
+    const item = this.getItemById(id);
+    if (item) {
+      item.quantity += 1;
+      this.saveToLocalStorage();
+    }
   }
 
   decreaseQuantity(id) {
-    const decreaseQuantityItems = this.items.map((item) =>
-      item.productId === id
-        ? { ...item, quantity: item.quantity <= 0 ? 0 : (item.quantity -= 1) }
-        : item
-    );
-    return (this.items =
-      decreaseQuantityItems.length === 0 ? [] : decreaseQuantityItems);
+    const item = this.getItemById(id);
+    if (item.quantity > 1) {
+      item.quantity -= 1;
+    } else {
+      this.removeItem(id);
+      return;
+    }
+    this.saveToLocalStorage();
   }
 
-  getCart() {
+  showCart() {
     return this.items.length === 0
       ? []
       : this.items.map((item) => {
@@ -67,8 +70,17 @@ export class Cart {
         });
   }
 
-  removeItemInCart(id) {
-    const filteredItems = this.items.filter((item) => item.productId !== id);
-    return (this.items = filteredItems.length === 0 ? [] : filteredItems);
+  removeItem(id) {
+    this.items = this.items.filter((item) => item.productId !== id);
+    this.saveToLocalStorage();
+  }
+  
+  loadFromLocalStorage() {
+    const savedItems = localStorage.getItem("cartItems");
+    return savedItems ? JSON.parse(savedItems) : [];
+  }
+
+  saveToLocalStorage() {
+    localStorage.setItem("cartItems", JSON.stringify(this.items));
   }
 }

@@ -154,7 +154,7 @@ function renderCartTable() {
     cart = new Cart([], productService.getCachedProducts());
   }
   let htmlContent = "";
-  cart.getCart().forEach(
+  cart.showCart().forEach(
     (item) =>
       (htmlContent += `
           <tr class="border-b hover:bg-gray-100">
@@ -224,18 +224,15 @@ function renderCartTable() {
 }
 window.handleIncreaseItemInTable = (id) => {
   cart.increaseQuantity(id);
-  console.log(cart.getItems());
   renderCartTable();
 };
 
 window.handleDecreaseItemInTable = (id) => {
   cart.decreaseQuantity(id);
-  console.log(cart.getItems());
-
   renderCartTable();
 };
 
 window.handleDeleteItemInTable = (id) => {
-  cart.removeItemInCart(id);
+  cart.removeItem(id);
   renderCartTable();
 };
