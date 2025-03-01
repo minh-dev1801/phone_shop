@@ -1,7 +1,6 @@
+import { Cart } from "../model/Cart.js";
 import { Product } from "../model/Product.js";
 import { productService } from "../services/api.js";
-
-let cart = [];
 
 const init = async () => {
   try {
@@ -15,9 +14,9 @@ const init = async () => {
 
 init();
 
-setInterval(async () => {
-  init();
-}, 3000);
+// setInterval(async () => {
+//   init();
+// }, 3000);
 
 const renderProduct = (products) => {
   let htmlContent = "";
@@ -104,9 +103,9 @@ const renderProduct = (products) => {
                     <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white">$${
                       product.price
                     }</p>
-                    <button type="button" class="addProductCart inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick={handleProductCart("${
+                    <button type="button" class="addProductCart inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onClick="handleAddProductToCart('${
                       product.id
-                    }")}>
+                    }')">
                         <i class="fa-solid fa-cart-plus -ms-2 me-2"></i>
                         Add to cart
                     </button>
@@ -134,9 +133,109 @@ document.getElementById("sortDropdownButton1").onclick = () => {
   });
 };
 
-window.handleProductCart = (id) => {
-  const productCart = new Product();
-  const findedProduct = products.find((product) => product.id === id);
-  Object.assign(productCart, findedProduct);
-  cart.push(productCart);
+let cart = null;
+
+window.handleAddProductToCart = (id) => {
+  if (!cart) {
+    cart = new Cart([], productService.getCachedProducts());
+  }
+  cart.addProductToCart(id);
+};
+
+document.getElementById("buttonShowCart").onclick = (e) => {
+  document.getElementById("showProduct").style.display = "none";
+  document.getElementById("showCart").style.display = "block";
+  e.preventDefault();
+  renderCartTable();
+};
+
+function renderCartTable() {
+  if (!cart) {
+    cart = new Cart([], productService.getCachedProducts());
+  }
+  let htmlContent = "";
+  cart.getCart().forEach(
+    (item) =>
+      (htmlContent += `
+          <tr class="border-b hover:bg-gray-100">
+                    <th
+                      scope="row"
+                      class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <img
+                        src="${item.img}"
+                        alt="iMac Front Image"
+                        class="w-auto h-8 mr-3"
+                      />
+                      Apple iMac 27&#34;
+                    </th>
+                    <td class="px-4 py-2">
+                      <span
+                        class="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded"
+                        >${item.price}</span
+                      >
+                    </td>
+                    <td
+                      class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <div class="flex items-center">
+                        <button
+                          type="button"
+                          class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
+                          onClick="handleIncreaseItemInTable('${item.id}')"
+                        >
+                          <i class="fa-solid fa-plus text-sm"></i>
+                        </button>
+                        <div
+                          class="text-gray-900 border border-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-default"
+                        >
+                          ${item.quantity}
+                        </div>
+                        <button
+                          type="button"
+                          class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center me-2 mb-2"
+                          onClick="handleDecreaseItemInTable('${item.id}')"
+                        >
+                          <i class="fa-solid fa-minus text-sm"></i>
+                        </button>
+                      </div>
+                    </td>
+                    <td
+                      class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      ${item.total}
+                        </div>
+                    </td>
+                    <td
+                      class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      <button
+                        type="button"
+                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                        onClick="handleDeleteItemInTable('${item.id}')"
+                      >
+                        Xóa
+                      </button>
+                    </td>
+                  </tr>
+  `)
+  );
+  document.getElementById("productTable").innerHTML = htmlContent;
+}
+window.handleIncreaseItemInTable = (id) => {
+  cart.increaseQuantity(id);
+  console.log(cart.getItems());
+  renderCartTable();
+};
+
+window.handleDecreaseItemInTable = (id) => {
+  cart.decreaseQuantity(id);
+  console.log(cart.getItems());
+
+  renderCartTable();
+};
+
+window.handleDeleteItemInTable = (id) => {
+  cart.removeItemInCart(id);
+  renderCartTable();
 };

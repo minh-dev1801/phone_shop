@@ -25,4 +25,8 @@ export class Product {
       (product) => product.type.toLowerCase() === value.toLowerCase()
     );
   }
+
+  static findProduct(products, id) {
+    return products.find((product) => product.id === id);
+  }
 }
