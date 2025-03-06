@@ -7,7 +7,6 @@ const init = async () => {
   try {
     productService.clearCache();
     await productService.getAllProducts();
-
     Cart.setInstance(productService.getCachedProducts());
     renderProduct(productService.getCachedProducts());
   } catch (error) {
@@ -17,10 +16,6 @@ const init = async () => {
 };
 
 init();
-
-setInterval(async () => {
-  init();
-}, 3000);
 
 const renderProduct = (products) => {
   let htmlContent = "";
