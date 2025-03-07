@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const addProductBtn = document.getElementById('addProductBtn');
     const productModal = document.getElementById('productModal');
     const modalTitle = document.getElementById('modalTitle');
+    const productId = document.getElementById('productId');
     const productName = document.getElementById('productName');
     const productImageUrl = document.getElementById('productImageUrl');
     const productImageFile = document.getElementById('productImageFile');
@@ -40,7 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         products.forEach(product => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td class="border p-2">${product.name}</td>
+            <td class="border p-2">${product.id}</td>    
+            <td class="border p-2">${product.name}</td>
                 <td class="border p-2"><img src="${product.img}" alt="${product.name}" class="w-6 h-6 object-cover"></td>
                 <td class="border p-2">${product.type}</td>
                 <td class="border p-2">${product.desc}</td>
@@ -69,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Clear the form
     function clearForm() {
+        productId.value = '';
         productName.value = '';
         productImageUrl.value = '';
         productImageFile.value = '';
@@ -83,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add or update product
     function saveProduct() {
         const productData = {
+            id: productId.value,
             name: productName.value,
             img: productImageUrl.value || URL.createObjectURL(productImageFile.files[0]),
             type: productType.value,
