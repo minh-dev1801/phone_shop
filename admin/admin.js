@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
           <td class="border p-2">${product.backCamera}</td>
           <td class="border p-2">${product.price}</td>
           <td class="border p-2">
-            <button class="editBtn bg-blue-500 text-white p-2 mr-2" data-id="${product.id}">Edit</button>
-            <button class="deleteBtn bg-red-500 text-white p-2" data-id="${product.id}">Delete</button>
+            <button class="editBtn bg-blue-500 text-white p-2 mr-2" data-id="${product.id}">Sửa</button>
+            <button class="deleteBtn bg-red-500 text-white p-2" data-id="${product.id}">Xóa</button>
           </td>
         `;
         productList.appendChild(row);
@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Show the modal
     function showModal() {
-      productModal.classList.remove('hidden');
+      productModal.style.display = 'flex';
     }
   
     // Hide the modal
     function hideModal() {
-      productModal.classList.add('hidden');
+      productModal.style.display = 'none';
     }
   
     // Clear the form
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
     // Delete product
     function deleteProduct(productId) {
-      axios.delete(`https://67bdd695321b883e790e2939.mockapi.io/Products${productId}`)
+      axios.delete(`https://67bdd695321b883e790e2939.mockapi.io/Products/${productId}`)
         .then(response => {
           fetchProducts();
         })
