@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td class="border p-2">${product.name}</td>
-          <td class="border p-2"><img src="${product.img}" alt="${product.img}" class="w-6 h-6 object-cover"></td>
+          <td class="border p-2"><img src="${product.img}" alt="${product.name}" class="w-6 h-6 object-cover"></td>
           <td class="border p-2">${product.type}</td>
           <td class="border p-2">${product.desc}</td>
           <td class="border p-2">${product.screen}</td>
@@ -171,9 +171,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const product = products.find(p => p.id === productId);
         modalTitle.textContent = 'Cập nhật sản phẩm';
         productName.value = product.name;
-        productImageUrl.value = product.image;
+        productImageUrl.value = product.img;
         productType.value = product.type;
-        productDescription.value = product.description;
+        productDescription.value = product.desc;
         productScreen.value = product.screen;
         productFrontCamera.value = product.frontCamera;
         productBackCamera.value = product.backCamera;
