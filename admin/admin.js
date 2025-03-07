@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const productData = {
             id: productId.value,
             name: productName.value,
-            img: productImageUrl.value || URL.createObjectURL(productImageFile.files[0]),
+            img: productImageUrl.value || (productImageFile.files.length > 0 ? URL.createObjectURL(productImageFile.files[0]) : ''),
             type: productType.value,
             desc: productDescription.value,
             screen: productScreen.value,
@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const productId = event.target.getAttribute('data-id');
             const product = products.find(p => p.id === productId);
             modalTitle.textContent = 'Cập nhật sản phẩm';
+            productId.value = product.id;
             productName.value = product.name;
             productImageUrl.value = product.img;
             productType.value = product.type;
