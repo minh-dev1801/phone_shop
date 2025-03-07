@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td class="border p-2">${product.name}</td>
-          <td class="border p-2"><img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover"></td>
+          <td class="border p-2"><img src="${product.img}" alt="${product.img}" class="w-6 h-6 object-cover"></td>
           <td class="border p-2">${product.type}</td>
-          <td class="border p-2">${product.description}</td>
+          <td class="border p-2">${product.desc}</td>
           <td class="border p-2">${product.screen}</td>
           <td class="border p-2">${product.frontCamera}</td>
           <td class="border p-2">${product.backCamera}</td>
           <td class="border p-2">${product.price}</td>
           <td class="border p-2">
-            <button class="editBtn bg-blue-500 text-white p-2 mr-2" data-id="${product.id}">Sửa</button>
-            <button class="deleteBtn bg-red-500 text-white p-2" data-id="${product.id}">Xóa</button>
+            <button class="editBtn" data-id="${product.id}">✏️</button>
+            <button class="deleteBtn" data-id="${product.id}">❌</button>
           </td>
         `;
         productList.appendChild(row);

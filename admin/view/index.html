@@ -28,7 +28,7 @@
           <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
             <li>
               <a href="../../customer/view/index.html"
-                class="py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white">
+                class="py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700">
                 Customer
               </a>
             </li>
@@ -56,8 +56,11 @@
           class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
           Tìm
         </button>
-        <button id="addProductBtn"
-          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
+        <!-- <button  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+          Toggle modal
+        </button> -->
+        <button id="addProductBtn" data-modal-target="productModal" data-modal-toggle="static-modal"
+        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
           Thêm sản phẩm
         </button>
       </div>
@@ -83,8 +86,8 @@
       </table>
     </div>
     <!-- Add product -->
-    <div id="productModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
-      <div class="bg-white p-4 rounded-lg w-96">
+    <div id="productModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-2xl max-h-full">
         <h2 id="modalTitle" class="text-xl font-bold mb-2">Thêm sản phẩm</h2>
         <input id="productName" type="text" placeholder="Tên sản phẩm" class="border p-2 w-full mb-2">
         <input id="productImageUrl" type="text" placeholder="URL hình ảnh" class="border p-2 w-full mb-2">
@@ -99,8 +102,8 @@
         <input id="productBackCamera" type="text" placeholder="Camera sau" class="border p-2 w-full mb-2">
         <input id="productPrice" type="number" placeholder="Giá" class="border p-2 w-full mb-2">
         <div class="flex justify-end gap-2">
-          <button id="cancelBtn" class="bg-gray-500 text-white p-2">Hủy</button>
-          <button id="saveProductBtn" class="bg-blue-500 text-white p-2">Lưu</button>
+          <button id="cancelBtn" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">Hủy</button>
+          <button id="saveProductBtn" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">Lưu</button>
         </div>
       </div>
     </div>
