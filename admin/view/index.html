@@ -23,18 +23,21 @@
           <span class="self-center text-xl font-semibold whitespace-nowrap">Phone shop</span>
         </a>
         <!-- Customer + Admin Tab -->
-        <div class="flex items-center lg:order-2">
-        </div>
+        <div class="flex items-center lg:order-2"></div>
         <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
           <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
             <li>
               <a href="../../customer/view/index.html"
-                class="py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700 block">Customer</a>
+                class="py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white">
+                Customer
+              </a>
             </li>
             <li>
               <a href="../../admin/view/index.html"
                 class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white"
-                aria-current="page">Admin</a>
+                aria-current="page">
+                Admin
+              </a>
             </li>
           </ul>
         </div>
@@ -50,10 +53,13 @@
       <div class="flex gap-4 mb-4">
         <input type="text" id="searchInput" class="border p-2 flex-1" placeholder="Tìm kiếm sản phẩm">
         <button id="searchBtn"
-          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">Tìm</button>
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
+          Tìm
+        </button>
         <button id="addProductBtn"
-          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900">Thêm
-          sản phẩm</button>
+          class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
+          Thêm sản phẩm
+        </button>
       </div>
       <!-- Bảng sản phẩm  -->
       <table class="w-full border-collapse border">
@@ -66,7 +72,10 @@
             <th class="border p-2">Màn hình</th>
             <th class="border p-2">Camera trước</th>
             <th class="border p-2">Camera sau</th>
-            <th class="border p-2">Giá <button id="sortPrice" class="ml-2">↕</button></th>
+            <th class="border p-2">
+              Giá
+              <button id="sortPrice" class="ml-2">↕</button>
+            </th>
             <th class="border p-2">Hành động</th>
           </tr>
         </thead>
@@ -76,25 +85,25 @@
     <!-- Add product -->
     <div id="productModal" class="hidden fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
       <div class="bg-white p-4 rounded-lg w-96">
-          <h2 id="modalTitle" class="text-xl font-bold mb-2">Thêm sản phẩm</h2>
-          <input id="productName" type="text" placeholder="Tên sản phẩm" class="border p-2 w-full mb-2">
-          <input id="productImageUrl" type="text" placeholder="URL hình ảnh" class="border p-2 w-full mb-2">
-          <input id="productImageFile" type="file" class="border p-2 w-full mb-2">
-          <select id="productType" class="border p-2 w-full mb-2">
-              <option value="iPhone">iPhone</option>
-              <option value="Samsung">Samsung</option>
-          </select>
-          <input id="productDescription" type="text" placeholder="Mô tả" class="border p-2 w-full mb-2">
-          <input id="productScreen" type="text" placeholder="Màn hình" class="border p-2 w-full mb-2">
-          <input id="productFrontCamera" type="text" placeholder="Camera trước" class="border p-2 w-full mb-2">
-          <input id="productBackCamera" type="text" placeholder="Camera sau" class="border p-2 w-full mb-2">
-          <input id="productPrice" type="number" placeholder="Giá" class="border p-2 w-full mb-2">
-          <div class="flex justify-end gap-2">
-              <button id="cancelBtn" class="bg-gray-500 text-white p-2">Hủy</button>
-              <button id="saveProductBtn" class="bg-blue-500 text-white p-2">Lưu</button>
-          </div>
+        <h2 id="modalTitle" class="text-xl font-bold mb-2">Thêm sản phẩm</h2>
+        <input id="productName" type="text" placeholder="Tên sản phẩm" class="border p-2 w-full mb-2">
+        <input id="productImageUrl" type="text" placeholder="URL hình ảnh" class="border p-2 w-full mb-2">
+        <input id="productImageFile" type="file" class="border p-2 w-full mb-2">
+        <select id="productType" class="border p-2 w-full mb-2">
+          <option value="iPhone">iPhone</option>
+          <option value="Samsung">Samsung</option>
+        </select>
+        <input id="productDescription" type="text" placeholder="Mô tả" class="border p-2 w-full mb-2">
+        <input id="productScreen" type="text" placeholder="Màn hình" class="border p-2 w-full mb-2">
+        <input id="productFrontCamera" type="text" placeholder="Camera trước" class="border p-2 w-full mb-2">
+        <input id="productBackCamera" type="text" placeholder="Camera sau" class="border p-2 w-full mb-2">
+        <input id="productPrice" type="number" placeholder="Giá" class="border p-2 w-full mb-2">
+        <div class="flex justify-end gap-2">
+          <button id="cancelBtn" class="bg-gray-500 text-white p-2">Hủy</button>
+          <button id="saveProductBtn" class="bg-blue-500 text-white p-2">Lưu</button>
+        </div>
       </div>
-  </div>
+    </div>
   </section>
 
   <!-- Axios -->

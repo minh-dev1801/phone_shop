@@ -1,123 +1,194 @@
-const apiUrl = "https://67bdd695321b883e790e2939.mockapi.io/Products"; // Thay thế bằng API thực tế
-
-// DOM Elements
-const productList = document.getElementById("productList");
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
-const addProductBtn = document.getElementById("addProductBtn");
-const productModal = document.getElementById("productModal");
-const modalTitle = document.getElementById("modalTitle");
-const saveProductBtn = document.getElementById("saveProductBtn");
-const cancelBtn = document.getElementById("cancelBtn");
-const sortPriceBtn = document.getElementById("sortPrice");
-
-// Inputs trong modal
-const productName = document.getElementById("productName");
-const productImageUrl = document.getElementById("productImageUrl");
-const productImageFile = document.getElementById("productImageFile");
-const productType = document.getElementById("productType");
-const productDescription = document.getElementById("productDescription");
-const productScreen = document.getElementById("productScreen");
-const productFrontCamera = document.getElementById("productFrontCamera");
-const productBackCamera = document.getElementById("productBackCamera");
-const productPrice = document.getElementById("productPrice");
-
-let isEditing = false;
-let editProductId = null;
-
-// Lấy danh sách sản phẩm
-async function fetchProducts() {
-    try {
-        const response = await axios.get(apiUrl);
-        renderProducts(response.data);
-    } catch (error) {
-        console.error("Lỗi khi lấy sản phẩm", error);
+document.addEventListener('DOMContentLoaded', function () {
+    const productList = document.getElementById('productList');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const addProductBtn = document.getElementById('addProductBtn');
+    const productModal = document.getElementById('productModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const productName = document.getElementById('productName');
+    const productImageUrl = document.getElementById('productImageUrl');
+    const productImageFile = document.getElementById('productImageFile');
+    const productType = document.getElementById('productType');
+    const productDescription = document.getElementById('productDescription');
+    const productScreen = document.getElementById('productScreen');
+    const productFrontCamera = document.getElementById('productFrontCamera');
+    const productBackCamera = document.getElementById('productBackCamera');
+    const productPrice = document.getElementById('productPrice');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const saveProductBtn = document.getElementById('saveProductBtn');
+    const sortPriceBtn = document.getElementById('sortPrice');
+  
+    let products = [];
+    let isEditing = false;
+    let editingProductId = null;
+  
+    // Fetch products from API
+    function fetchProducts() {
+      axios.get('https://67bdd695321b883e790e2939.mockapi.io/Products')
+        .then(response => {
+          products = response.data;
+          renderProducts(products);
+        })
+        .catch(error => {
+          console.error('Error fetching products:', error);
+        });
     }
-}
-
-// Hiển thị danh sách sản phẩm
-function renderProducts(products) {
-    productList.innerHTML = "";
-    products.forEach(product => {
-        productList.innerHTML += `
-            <tr>
-                <td class="border p-2">${product.name}</td>
-                <td class="border p-2"><img src="${product.image}" class="w-16"></td>
-                <td class="border p-2">${product.type}</td>
-                <td class="border p-2">${product.description}</td>
-                <td class="border p-2">${product.screen}</td>
-                <td class="border p-2">${product.frontCamera}</td>
-                <td class="border p-2">${product.backCamera}</td>
-                <td class="border p-2">${product.price} VND</td>
-                <td class="border p-2">
-                    <button onclick="editProduct('${product.id}')" class="bg-yellow-500 text-white p-1">Sửa</button>
-                    <button onclick="deleteProduct('${product.id}')" class="bg-red-500 text-white p-1">Xóa</button>
-                </td>
-            </tr>`;
-    });
-}
-
-// Hiển thị modal
-function showModal(edit = false) {
-    isEditing = edit;
-    productModal.classList.remove("hidden");
-}
-
-// Ẩn modal
-function hideModal() {
-    productModal.classList.add("hidden");
-}
-
-// Thêm sản phẩm
-async function addProduct() {
-    const newProduct = {
+  
+    // Render products to the table
+    function renderProducts(products) {
+      productList.innerHTML = '';
+      products.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td class="border p-2">${product.name}</td>
+          <td class="border p-2"><img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover"></td>
+          <td class="border p-2">${product.type}</td>
+          <td class="border p-2">${product.description}</td>
+          <td class="border p-2">${product.screen}</td>
+          <td class="border p-2">${product.frontCamera}</td>
+          <td class="border p-2">${product.backCamera}</td>
+          <td class="border p-2">${product.price}</td>
+          <td class="border p-2">
+            <button class="editBtn bg-blue-500 text-white p-2 mr-2" data-id="${product.id}">Edit</button>
+            <button class="deleteBtn bg-red-500 text-white p-2" data-id="${product.id}">Delete</button>
+          </td>
+        `;
+        productList.appendChild(row);
+      });
+    }
+  
+    // Show the modal
+    function showModal() {
+      productModal.classList.remove('hidden');
+    }
+  
+    // Hide the modal
+    function hideModal() {
+      productModal.classList.add('hidden');
+    }
+  
+    // Clear the form
+    function clearForm() {
+      productName.value = '';
+      productImageUrl.value = '';
+      productImageFile.value = '';
+      productType.value = 'iPhone';
+      productDescription.value = '';
+      productScreen.value = '';
+      productFrontCamera.value = '';
+      productBackCamera.value = '';
+      productPrice.value = '';
+    }
+  
+    // Add or update product
+    function saveProduct() {
+      const productData = {
         name: productName.value,
-        image: productImageUrl.value,
+        image: productImageUrl.value || URL.createObjectURL(productImageFile.files[0]),
         type: productType.value,
         description: productDescription.value,
         screen: productScreen.value,
         frontCamera: productFrontCamera.value,
         backCamera: productBackCamera.value,
         price: productPrice.value
-    };
-    try {
-        await axios.post(apiUrl, newProduct);
-        hideModal();
-        fetchProducts();
-    } catch (error) {
-        console.error("Lỗi khi thêm sản phẩm", error);
+      };
+  
+      if (isEditing) {
+        // Update product
+        axios.put(`https://67bdd695321b883e790e2939.mockapi.io/Products/${editingProductId}`, productData)
+          .then(response => {
+            fetchProducts();
+            hideModal();
+            clearForm();
+            isEditing = false;
+            editingProductId = null;
+          })
+          .catch(error => {
+            console.error('Error updating product:', error);
+          });
+      } else {
+        // Add product
+        axios.post('https://67bdd695321b883e790e2939.mockapi.io/Products', productData)
+          .then(response => {
+            fetchProducts();
+            hideModal();
+            clearForm();
+          })
+          .catch(error => {
+            console.error('Error adding product:', error);
+          });
+      }
     }
-}
-
-// Sửa sản phẩm
-function editProduct(id) {
-    editProductId = id;
-    modalTitle.innerText = "Chỉnh sửa sản phẩm";
-    showModal(true);
-}
-
-// Xóa sản phẩm
-async function deleteProduct(id) {
-    try {
-        await axios.delete(`${apiUrl}/${id}`);
-        fetchProducts();
-    } catch (error) {
-        console.error("Lỗi khi xóa sản phẩm", error);
+  
+    // Delete product
+    function deleteProduct(productId) {
+      axios.delete(`https://67bdd695321b883e790e2939.mockapi.io/Products${productId}`)
+        .then(response => {
+          fetchProducts();
+        })
+        .catch(error => {
+          console.error('Error deleting product:', error);
+        });
     }
-}
-
-// Tìm kiếm sản phẩm
-searchBtn.addEventListener("click", () => {
-    const searchValue = searchInput.value.toLowerCase();
-    fetchProducts(searchValue);
-});
-
-// Sắp xếp sản phẩm theo giá
-let sortAscending = true;
-sortPriceBtn.addEventListener("click", () => {
-    sortAscending = !sortAscending;
+  
+    // Search products
+    function searchProducts() {
+      const query = searchInput.value.toLowerCase();
+      const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+      renderProducts(filteredProducts);
+    }
+  
+    // Sort products by price
+    let sortAscending = true;
+    function sortProductsByPrice() {
+      products.sort((a, b) => sortAscending ? a.price - b.price : b.price - a.price);
+      sortAscending = !sortAscending;
+      renderProducts(products);
+    }
+  
+    // Event listeners
+    searchBtn.addEventListener('click', searchProducts);
+    searchInput.addEventListener('keyup', function (event) {
+      if (event.key === 'Enter') {
+        searchProducts();
+      } else if (searchInput.value === '') {
+        renderProducts(products);
+      }
+    });
+    addProductBtn.addEventListener('click', function () {
+      modalTitle.textContent = 'Thêm sản phẩm';
+      showModal();
+    });
+    cancelBtn.addEventListener('click', function () {
+      hideModal();
+      clearForm();
+    });
+    saveProductBtn.addEventListener('click', saveProduct);
+    sortPriceBtn.addEventListener('click', sortProductsByPrice);
+    productList.addEventListener('click', function (event) {
+      if (event.target.classList.contains('editBtn')) {
+        const productId = event.target.getAttribute('data-id');
+        const product = products.find(p => p.id === productId);
+        modalTitle.textContent = 'Cập nhật sản phẩm';
+        productName.value = product.name;
+        productImageUrl.value = product.image;
+        productType.value = product.type;
+        productDescription.value = product.description;
+        productScreen.value = product.screen;
+        productFrontCamera.value = product.frontCamera;
+        productBackCamera.value = product.backCamera;
+        productPrice.value = product.price;
+        isEditing = true;
+        editingProductId = productId;
+        showModal();
+      } else if (event.target.classList.contains('deleteBtn')) {
+        const productId = event.target.getAttribute('data-id');
+        if (confirm('Are you sure you want to delete this product?')) {
+          deleteProduct(productId);
+        }
+      }
+    });
+  
+    // Initial fetch of products
     fetchProducts();
-});
-
-// Khởi chạy
-fetchProducts();
+  });
